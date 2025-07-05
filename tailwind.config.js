@@ -28,7 +28,7 @@ module.exports = {
       colors: {
         foreground: '#3A3A3A',
         primary: '#A5E8EC',
-        'dark-blue': '#0E0C5C',
+        'dark-blue': '#4f46e5',
         'primary-light': '#C6E9F8',
         'primary-max-light': '#ecf8fd',
         'dark-primary': '#7ECED2',

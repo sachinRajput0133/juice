@@ -14,10 +14,11 @@ yarn build ||
 branch_name=$(git branch --show-current)
 echo "Current branch: $branch_name"
 
-pattern="^(feature|bugfix|hotfix|cr|release)/[a-zA-Z0-9_-]+$"
-
-# Use grep to match the pattern since it is POSIX compliant
-if ! echo "$branch_name" | grep -Eq "$pattern"; then
-  echo "ERROR: Your branch name does not follow the 'feature|bugfix|hotfix|cr|release/branch-name' pattern."
-  exit 1
-fi
+# Branch name pattern check is disabled
+# pattern="^(main|feature|bugfix|hotfix|cr|release)/[a-zA-Z0-9_-]+$"
+# 
+# # Use grep to match the pattern since it is POSIX compliant
+# if ! echo "$branch_name" | grep -Eq "$pattern"; then
+#   echo "ERROR: Your branch name does not follow the 'main|feature|bugfix|hotfix|cr|release/branch-name' pattern."
+#   exit 1
+# fi

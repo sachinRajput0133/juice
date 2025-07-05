@@ -1,0 +1,43 @@
+/* Custom styles for n8n chat */
+
+/* Customize the chat bubble */
+.n8n-chat-bubble {
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize the chat input */
+.n8n-chat-input {
+  border-radius: 20px;
+  padding: 12px 16px;
+}
+
+/* Customize the chat messages */
+.n8n-chat-message {
+  margin-bottom: 8px;
+}
+
+/* Customize the user message */
+.n8n-chat-message-user {
+  background-color: #e9f5ff;
+  color: #0c2d48;
+}
+
+/* Customize the bot message */
+.n8n-chat-message-bot {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Customize the chat header */
+.n8n-chat-header {
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+}
+
+/* Customize the chat container */
+.n8n-chat-container {
+  border-radius: 12px;
+  overflow: hidden;
+}
