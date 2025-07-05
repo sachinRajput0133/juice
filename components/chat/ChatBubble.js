@@ -35,7 +35,7 @@ export function ChatBubble() {
     <div id='n8n-chat' className='fixed bottom-6  right-0 '>
       {/* Custom chat bubble icon - purely visual with pointer-events: none */}
       <div className='chat-button-wrapper' aria-label='Chat button visual'>
-        <ChatBubbleIcon className='w-[100px] h-[100px] ' />
+        {/* <ChatBubbleIcon className='w-[100px] h-[100px] ' /> */}
       </div>
     </div>
   );
