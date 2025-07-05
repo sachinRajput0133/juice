@@ -416,11 +416,6 @@ export function Header() {
               height={32}
               // className='h-16'
             />
-            {/* <img
-              src='/Juice-2024-Logo-2000x800.png'
-              alt='Juice'
-              className='h-8 block dark:hidden'
-            /> */}
           </a>
         </div>
 

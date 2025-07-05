@@ -16,7 +16,9 @@
 .n8n-chat-message {
   margin-bottom: 8px;
 }
-
+.n8n-chat .chat-window-toggle {
+  visibility: hidden;
+}
 /* Customize the user message */
 .n8n-chat-message-user {
   background-color: #e9f5ff;

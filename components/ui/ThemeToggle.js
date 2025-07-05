@@ -4,13 +4,39 @@ import { Moon, Sun } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 export function ThemeToggle({ className }) {
-  const [theme, setTheme] = React.useState('light');
+  // Use null as initial state to detect if we're in SSR
+  const [theme, setTheme] = React.useState(null);
   const [isChanging, setIsChanging] = React.useState(false);
 
+  // Initialize theme from localStorage or system preference
   React.useEffect(() => {
+    // This code only runs client-side
+    // First check localStorage
+    const storedTheme = localStorage.getItem('theme');
+
+    if (storedTheme) {
+      // Use stored theme preference
+      setTheme(storedTheme);
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      // If no stored preference, check system preference
+      setTheme('dark');
+    } else {
+      // Default to light theme
+      setTheme('light');
+    }
+  }, []);
+
+  // Apply theme changes to document and store preference
+  React.useEffect(() => {
+    // Skip during SSR or when theme is not yet determined
+    if (theme === null) return;
+
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(theme);
+
+    // Store theme preference in localStorage
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
   const handleThemeChange = () => {
