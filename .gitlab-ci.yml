@@ -1,0 +1,38 @@
+stages:
+  - Deliverectmap
+  - Deliverectmap-main
+
+Deliverectmap:
+  stage: Deliverectmap
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$DELIVERECT_DEV_PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $DELIVERECT_DEV_SERVER >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploy to Otter dev server"
+    - ssh $DELIVERECT_DEV_USER@$DELIVERECT_DEV_SERVER "who"
+    - ssh $DELIVERECT_DEV_USER@$DELIVERECT_DEV_SERVER "cd $DELIVERECT_DEV_PATH && git fetch origin refs/tags/$CI_COMMIT_TAG:refs/tags/$CI_COMMIT_TAG && git checkout $CI_COMMIT_TAG && git pull origin $CI_COMMIT_TAG && npm run serve && exit"
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^dev-[vV]-.*/'
+
+Deliverectmap-main:
+  stage: Deliverectmap-main
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$DELIVERECT_PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $DELIVERECT_SERVER >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploy to Otter dev server"
+    - ssh $DELIVERECT_USER@$DELIVERECT_SERVER "who"
+    - ssh $DELIVERECT_USER@$DELIVERECT_SERVER "cd $DELIVERECT_PATH && git fetch origin refs/tags/$CI_COMMIT_TAG:refs/tags/$CI_COMMIT_TAG && git checkout $CI_COMMIT_TAG && git pull origin $CI_COMMIT_TAG &&  npm run serve && exit"
+  rules:
+    - if: '$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^[Vv]-.*/'
+      when: manual

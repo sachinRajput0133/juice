@@ -1,0 +1,22 @@
+#!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+echo 'Styling, testing and building before committing'
+
+# Check Prettier standards
+yarn check-format ||
+(
+    echo 'Prettier Check Failed.';
+    false;
+)
+
+# Check ESLint Standards
+yarn check-lint ||
+(
+    echo 'ESLint Check Failed.'
+    false; 
+)
+
+
+# Success
+echo 'Now we can commit'

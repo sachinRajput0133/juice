@@ -1,0 +1,23 @@
+#!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+
+# Check whether a build can run or not
+echo 'Checking whether code is valid for next build'
+yarn build ||
+(
+    echo 'Build failed'
+    false;
+)
+
+
+branch_name=$(git branch --show-current)
+echo "Current branch: $branch_name"
+
+pattern="^(feature|bugfix|hotfix|cr|release)/[a-zA-Z0-9_-]+$"
+
+# Use grep to match the pattern since it is POSIX compliant
+if ! echo "$branch_name" | grep -Eq "$pattern"; then
+  echo "ERROR: Your branch name does not follow the 'feature|bugfix|hotfix|cr|release/branch-name' pattern."
+  exit 1
+fi

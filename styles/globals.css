@@ -1,0 +1,441 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'TropicalJungle';
+  src: url('/fonts/TropicalJungle.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer utilities {
+  .custom-scrollbar {
+    scrollbar-width: 4px; /* For Firefox */
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px; /* For WebKit browsers */
+    height: 4px;
+  }
+}
+
+/* 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+*/
+body {
+  font-family: 'Josefin Sans', sans-serif, 'TropicalJungle';
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 1px;
+}
+
+.rnc__notification-container--top-right {
+  right: 20px;
+  top: 70px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2c2c2;
+  border-radius: 10px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+/* .container {
+  max-width: 1350px;
+} */
+
+.cart-container {
+  position: relative;
+  display: inline-block;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px); /* Use safe area inset if available */
+}
+
+.cart-count {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background-color: #0e0c5c;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 2px solid;
+  border-color: white;
+}
+
+.skeleton-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+svg {
+  cursor: pointer;
+}
+
+.toggle-checkbox {
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s;
+  width: 44px;
+  height: 24px;
+  border-radius: 30px;
+  border-color: transparent !important;
+  background: #e5e7eb;
+}
+
+.toggle-checkbox:checked {
+  background: #10b981;
+}
+
+.toggle-checkbox:before {
+  position: absolute;
+  left: 1px !important;
+  top: 1px !important;
+  height: 20px;
+  width: 20px !important;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.toggle-checkbox:checked:before {
+  transform: translateX(20px);
+}
+
+/* checkbox */
+input[type='checkbox'] {
+  border: 1px solid #333;
+  position: relative;
+  z-index: 1;
+}
+
+/* input[type='checkbox']::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  background: #000;
+  border-radius: 100%;
+} */
+
+.custom-checkbox {
+  height: 18px;
+  width: 18px;
+  min-width: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #36c7d5;
+  border-radius: 5px;
+  background: #ffff;
+}
+
+.indeterminate-checkbox {
+  background: #e2e2e2;
+  height: 18px;
+  width: 18px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+input[type='checkbox']:checked + .custom-checkbox {
+  background-color: #36c7d5;
+  background-image: url(../public/images/checkbox.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: #36c7d5;
+}
+
+/* input[type="checkbox"]:checked + .checkbox {
+  background-color: #36c7d5;
+  background-image: url(../public/images/checkbox.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+} */
+
+input[type='checkbox']:checked + .indeterminate-checkbox {
+  background-color: var(--primary-color);
+  /* background-image: url(../public/images/dash.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.button-clicked:active {
+  border-color: black;
+}
+/* For Chrome, Safari, Edge, and Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.react-datepicker__input-container .react-datepicker__calendar-icon {
+  position: absolute;
+  padding: 0.5rem;
+  top: 7px;
+  box-sizing: content-box;
+  right: 20px;
+  color: #ff0000 !important;
+}
+
+@media only screen and (max-width: 1350px) {
+  .container {
+    max-width: 95%;
+  }
+}
+
+.calender-dates .react-tabs__tab--selected button {
+  background-color: #34c7d3 !important;
+  .tab-style {
+    cursor: pointer;
+    padding: 8px 16px;
+    font-weight: 600;
+    color: #555;
+  }
+  .scrollbar-hide {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-primary {
+    color: #007aff;
+  }
+
+  .underline:hover {
+    color: #0056b3;
+  }
+
+  .tab-style:hover {
+    color: #333;
+  }
+
+  .tab-style:not(.selected-tab):hover {
+    background-color: #f0f0f0;
+  }
+
+  .text-red {
+    color: #ff0000;
+  }
+}
+
+.calender-dates .react-tabs__tab--selected button div {
+  color: white !important;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* radio button */
+.radio-button-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.radio-button-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  height: 21px;
+  width: 21px;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 0, 0, 0.25);
+  transition: all 0.3s;
+  margin: 0;
+}
+
+.radio-button-container:hover input ~ .checkmark {
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.radio-button-container input:checked ~ .checkmark {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: #000;
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.radio-button-container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.radio-button-container .checkmark:after {
+  top: 1px;
+  left: 1px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #000;
+}
+
+/* menu hover effect */
+li.menu-item:hover .menu-item-text {
+  color: #7eced2;
+}
+li.menu-item:hover .menu-icon {
+  padding-right: 10px !important;
+}
+li.menu-item .menu-icon {
+  transition: 0.5s;
+}
+
+/* react tab classes */
+
+.tab-style {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 400;
+  color: #000;
+}
+.tab-style:hover {
+  font-weight: 700;
+  color: black;
+  outline: none;
+  border-bottom: 3px solid #a5e8ec;
+  transition-duration: 100ms;
+}
+
+.selected-tab {
+  font-weight: 700;
+  color: black;
+  outline: none;
+  border-bottom: 3px solid #a5e8ec;
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.react-tabs__tab-list {
+  margin: 0 0 25px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.text-red {
+  color: #ff0000;
+}
+
+.text-warn {
+  color: #b45309;
+}
+
+.add-to-cart-wrapper {
+  position: fixed;
+  bottom: env(safe-area-inset-bottom, 0); /* Safe area handling */
+  left: 0;
+  width: 100%;
+  background-color: #f3f4f6; /* Match your design */
+  padding-bottom: env(safe-area-inset-bottom, 16px); /* Safe area padding */
+  border-top: 2px solid rgba(0, 0, 0, 0.1); /* Optional: border for separation */
+  z-index: 999; /* Ensure it stays above other elements */
+}
+
+.add-to-cart-button {
+  width: 90%; /* Adjust width as needed */
+  margin: 0 auto; /* Center the button */
+  display: block;
+}
