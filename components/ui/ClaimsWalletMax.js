@@ -236,10 +236,10 @@ export function ClaimsWalletMax() {
               <motion.div className='md:col-span-2' variants={cardVariants}>
                 <button
                   onClick={() => handleSelectPaymentMethod('virtual-card')}
-                  className='w-full bg-white dark:bg-gray-800 border border-dark-blue border-opacity-55  rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-600/50 dark:border-blue-500/30 flex md:flex-row flex-col items-center text-left gap-6 relative overflow-hidden group'
+                  className='w-full bg-white dark:bg-gray-800  border-dark-blue border-opacity-55  rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow border-2 border-blue-600/50 dark:border-blue-500/30 flex md:flex-row flex-col items-center text-left gap-6 relative overflow-hidden group'
                 >
                   {/* Card visual */}
-                  <div className='w-[200px] h-[120px] rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex-shrink-0 shadow-lg relative'>
+                  <div className='w-[200px] h-[120px] rounded-xl bg-gradient-to-r from-blue-600 bg-dark-blue p-4 flex-shrink-0 shadow-lg relative'>
                     <div className='absolute top-2 left-2'>
                       <img
                         src='/images/Juice-2024-Logo-2000x800.png'
@@ -718,13 +718,13 @@ export function ClaimsWalletMax() {
                           parseFloat(transferAmount) <= 0 ||
                           parseFloat(transferAmount) > walletData.balance
                         }
-                        className={`w-full flex items-center justify-center gap-2 py-3 rounded-lg font-medium transition-all 
+                        className={`w-full flex  items-center justify-center gap-2 py-3 rounded-lg font-medium transition-all 
                           ${
                             !transferAmount ||
                             parseFloat(transferAmount) <= 0 ||
                             parseFloat(transferAmount) > walletData.balance
                               ? 'bg-gray-200 text-gray-500 cursor-not-allowed dark:bg-gray-700 dark:text-gray-400'
-                              : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:shadow-lg'
+                              : 'bg-gradient-to-r from-blue-600 to-dark-blue bg-dark-blue text-white hover:shadow-lg'
                           }`}
                       >
                         <span>Transfer Funds</span>
